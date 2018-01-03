@@ -18,3 +18,5 @@ Aktualne możliwości:
 -Przycisk zapisu (z potwierdzeniem)
 
 -Przycisk wyczyszczenia całego kalendarza (z potwierdzeniem)
+
+-Działające menu pozwalające poprzez naciśnięcie kratki wybrać kolor, którym chcemy zamalować coś w kalendarzu

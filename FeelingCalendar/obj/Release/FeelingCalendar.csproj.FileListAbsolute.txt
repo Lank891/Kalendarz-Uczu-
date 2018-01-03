@@ -1,0 +1,9 @@
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\bin\Release\FeelingCalendar.exe.config
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\bin\Release\FeelingCalendar.exe
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\bin\Release\FeelingCalendar.pdb
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\obj\Release\FeelingCalendar.Form1.resources
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\obj\Release\FeelingCalendar.Properties.Resources.resources
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\obj\Release\FeelingCalendar.csproj.GenerateResource.Cache
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\obj\Release\FeelingCalendar.csproj.CoreCompileInputs.cache
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\obj\Release\FeelingCalendar.exe
+C:\Users\h99_1\source\repos\FeelingCalendar\FeelingCalendar\obj\Release\FeelingCalendar.pdb

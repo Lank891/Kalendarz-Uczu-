@@ -1,5 +1,5 @@
 # Kalendarz Uczuć
-Kalendarz pozwalający wypełnić każdy dzień uczuciem, które danego dnia dominowało, a następnie zapisać kalendarz w postaci obrazu. 
+Kalendarz pozwalający wypełnić każdy dzień uczuciem, które danego dnia dominowało.
 
 Plik projektu: .sln
 

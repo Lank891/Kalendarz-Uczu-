@@ -20,3 +20,5 @@ Aktualne możliwości:
 -Przycisk wyczyszczenia całego kalendarza (z potwierdzeniem)
 
 -Działające menu pozwalające poprzez naciśnięcie kratki wybrać kolor, którym chcemy zamalować coś w kalendarzu
+
+-Zmiana koloru miejsca w kalendarzu na wybrany z menu kliknięciem myszki

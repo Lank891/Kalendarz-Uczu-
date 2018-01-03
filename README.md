@@ -3,7 +3,7 @@ Kalendarz pozwalający wypełnić każdy dzień uczuciem, które danego dnia dom
 
 //Andrzej Litkowski
 
-# ----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------
 
 Aktualne możliwości:
 

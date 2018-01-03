@@ -7,7 +7,7 @@ Kalendarz pozwalający wypełnić każdy dzień uczuciem, które danego dnia dom
 
 Aktualne możliwości:
 
--Wczytuje kalendarz do pliku
+-Wczytuje kalendarz z pliku
 
 -Zapisuje kalendarz do pliku podczas wyjścia z programu (z potwierdzeniem)
 

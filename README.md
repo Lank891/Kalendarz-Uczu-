@@ -2,7 +2,9 @@
 Kalendarz pozwalający wypełnić każdy dzień uczuciem, które danego dnia dominowało, a następnie zapisać kalendarz w postaci obrazu. 
 
 Plik projektu: .sln
+
 Kod i inne powiązane pliki + wydanie debug: folder
+
 Sam plik .exe release i .cdc: w zipie
 
 //Andrzej Litkowski

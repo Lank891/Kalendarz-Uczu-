@@ -16,8 +16,8 @@ namespace FeelingCalendar
         //Tablica 372 dni
         private Day[] days = new Day[372];
 
-        //Tablica z elementami menu wyboru kolorów - 10 elementów
-        private PickMenu[] menu = new PickMenu[10];
+        //Tablica z elementami menu wyboru kolorów - 10 elementów + specjalny do robienia screenów
+        private PickMenu[] menu = new PickMenu[11];
 
         //Aktualnie wybrany element menu
         private int actualMenu;
@@ -38,6 +38,8 @@ namespace FeelingCalendar
             menu[7] = new PickMenu(353, 384, Color.Crimson);
             menu[8] = new PickMenu(353, 414, Color.Salmon);
             menu[9] = new PickMenu(353, 444, Color.SteelBlue);
+            //Specjalny indeks menu dla robienia screenów
+            menu[10] = new PickMenu(10000, 10000, Color.Transparent);
         }
 
         //Błąd odczytu pliku - zwraca informację o tym czy został utworzony nowy plik, czy nie
@@ -340,11 +342,103 @@ namespace FeelingCalendar
                 if (day.GetRect().Contains(e.Location))
                 {
                     day.ChangeType((char)(actualMenu + 48));
-                    System.Diagnostics.Debug.WriteLine((char)(actualMenu + 48));
+                    //System.Diagnostics.Debug.WriteLine((char)(actualMenu + 48));
                     this.Invalidate(true);
                     return;
                 }
             }
+        }
+
+        //Funkcja zapisująca bitmapę jako .jpeg do podanej ścieżki
+        private void SaveToBitmap(String path, System.Drawing.Imaging.ImageFormat format)
+        {
+            //Tworzy bitmapę o wymiarach wnętrza formy
+            Bitmap wideBitmap = new Bitmap(this.Width, this.Height);
+
+            //Zapisuje odległość góry i lewej strony wnętrza formy od całej formy z okienkiem
+            Point origin = this.PointToScreen(new Point(0, 0));
+            int dx = origin.X - this.Left;
+            int dy = origin.Y - this.Top;
+
+            //Prostokąt w miejscu, gdzie kończy się ramka o wymiarach wnętrza formy
+            Rectangle fragment = new Rectangle(new Point(dx, dy), this.ClientSize);
+
+            //Przesunięcie o piksele legendy do robienia screena;
+            int offset = 95;
+
+            //Wyłącza widoczność przycisków i zmienia zapisując aktywny przedmiot w menu + przesówa legendę bardziej na środek
+            button1.Visible = false;
+            button2.Visible = false;
+            button3.Visible = false;
+            int tempMenu = actualMenu;
+            actualMenu = 10;
+            foreach (PickMenu pickmenu in menu)
+            {
+                pickmenu.MoveRects(offset);
+            }
+            label1.Left += offset;
+            label2.Left += offset;
+
+            //Bitmapa z całej formy
+            this.DrawToBitmap(wideBitmap, new Rectangle(0, 0, this.Width, this.Height));
+
+            //Przywraca poprzedni stan formy
+            button1.Visible = true;
+            button2.Visible = true;
+            button3.Visible = true;
+            actualMenu = tempMenu;
+            foreach (PickMenu pickmenu in menu)
+            {
+                pickmenu.MoveRects(-offset);
+            }
+            label1.Left -= offset;
+            label2.Left -= offset;
+
+            //Bitmapa będąca wycinkiem bitmapy z całej formy o wielkości i położeniu powyższego prostokąta
+            Bitmap bitmap = wideBitmap.Clone(fragment, System.Drawing.Imaging.PixelFormat.DontCare);
+
+            //Zapisuje mniejszą bitmapę do pliku
+            bitmap.Save(path, format);
+
+            //Czyści bitmapę
+            wideBitmap.Dispose();
+            bitmap.Dispose();
+        }
+
+        //Kliknięcie w przycisk robienia screena
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //Pokazuje okno zapisu zdjęcia
+            saveFileDialog1.ShowDialog();
+            //Jeżeli ktoś wybierze "Zapisz to odpala się funkcja kliknięcia zapisz powyższego dialogu
+        }
+
+        //Kliknięcia "Zapisz" w dialogu zapisu pliku
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            //Pobranie ścieżki do pliku
+            String filePath = saveFileDialog1.FileName;
+            //System.Diagnostics.Debug.WriteLine(filePath);
+
+            //Podział pliku na części - aby oddzielić rozszerzenie od reszty
+            String []fileDivided = filePath.Split('.');
+
+            //Nazwa pliku - czyli cały plik bez rozszerzenia (ale z kropką na końcu)
+            String fileName = "";
+            for (int i = 0; i < fileDivided.Length - 1; i++) fileName += fileDivided[i] += ".";
+
+            //Rozszerzenie pliku zawsze jako małe litery
+            String extension = fileDivided.Last().ToLower();
+
+            //Dla png wywołuje zapis do png
+            if (extension.Equals("png")) SaveToBitmap(fileName + extension, System.Drawing.Imaging.ImageFormat.Png);
+            //Dla bmp wywołuje zapis do bmp
+            else if (extension.Equals("bmp")) SaveToBitmap(fileName + extension, System.Drawing.Imaging.ImageFormat.Bmp);
+            //Dla innych rozszerzeń zapis do jpeg
+            else SaveToBitmap(fileName + "jpeg", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            //Po zapisie przywraca domyślną nazwę do kolejnego otworzenia okna zapisu
+            saveFileDialog1.FileName = "Kalendarz";
         }
     }
 
@@ -461,15 +555,22 @@ namespace FeelingCalendar
         private SolidBrush blackPen;
         //Kwadraty
         private Rectangle colorRect;
-        private Rectangle blacRect;
+        private Rectangle blackRect;
 
         //Zddobycie większego kwadratu
-        public Rectangle GetRect() { return blacRect; }
+        public Rectangle GetRect() { return blackRect; }
+
+        //Do przesunięcia w prawo/lewo kwadratów - do robienia screenów
+        public void MoveRects(int offset)
+        {
+            colorRect.X += offset;
+            blackRect.X += offset;
+        }
 
         //Konstrutkor - współrzędne dużego kwadratu (obwódki) i kolor środka
         public PickMenu(int x, int y, Color col)
         {
-            blacRect = new Rectangle(x, y, 20, 20);
+            blackRect = new Rectangle(x, y, 20, 20);
             colorRect = new Rectangle(x + 2, y + 2, 16, 16);
 
             blackPen = new SolidBrush(Color.Black);
@@ -480,7 +581,7 @@ namespace FeelingCalendar
         public void Draw(PaintEventArgs e)
         {
             //Najpierw czarny, a potem na nim kolorowy
-            e.Graphics.FillRectangle(blackPen, blacRect);
+            e.Graphics.FillRectangle(blackPen, blackRect);
             e.Graphics.FillRectangle(colorPen, colorRect);
         }
     }

@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,7 +89,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(550, 407);
+            this.button2.Location = new System.Drawing.Point(550, 421);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(190, 50);
             this.button2.TabIndex = 6;
@@ -97,18 +99,39 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(550, 371);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(190, 50);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Zrób screena";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "jpeg";
+            this.saveFileDialog1.FileName = "Kalendarz";
+            this.saveFileDialog1.Filter = "Pliki graficzne|*.jpeg|Pliki graficzne|*.png|Pliki graficzne|*.bmp|Wszystkie plik" +
+    "i|*.*";
+            this.saveFileDialog1.Title = "Zapisz screena";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(752, 469);
+            this.ClientSize = new System.Drawing.Size(752, 472);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(768, 508);
-            this.MinimumSize = new System.Drawing.Size(768, 508);
+            this.MaximumSize = new System.Drawing.Size(768, 511);
+            this.MinimumSize = new System.Drawing.Size(768, 511);
             this.Name = "Form1";
             this.Text = "Kalendarz Uczuć";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -124,6 +147,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
